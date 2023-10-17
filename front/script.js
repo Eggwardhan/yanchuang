@@ -7,7 +7,9 @@
 // }
 function showPage(pageNumber){
     var pages = document.querySelector('.page');
-    pages.forEach(function(page,index){
+    con
+    var pagesArr=Array.from(pages);
+    pagesArr.forEach(function(page,index){
         alert(page);
         if (index+1===pageNumber){
             page.style.display='block';
