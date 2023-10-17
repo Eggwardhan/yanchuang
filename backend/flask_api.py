@@ -13,7 +13,6 @@ from datasets.cellseg import CellSeg
 from models.unetplusplus import NestedUNet
 from utils.slide_infer import slide_inference
 import models.text_encoder.clip as clip
-
 sys.path.append(0,"/home/dmt218/zby/MTCSNet")
 from datasets.WSCellseg import WSCellSeg
 from models.unetplusplus import NestedUNet as NestedUNet2
@@ -143,6 +142,7 @@ def segment():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
 @app.route('/pancls',methods=['POST'])
 def pancls():
     try:
@@ -157,12 +157,12 @@ def pancls():
         segmentation = segment_pancls_image(modelPancls,image_tensor,test_fusion="mean")
 
         # 将分割结果图像转为Base64编码
-        result_image = Image.fromarray(segmentation.astype('uint8'))
-        buffered = io.BytesIO()
-        result_image.save(buffered, format="PNG")
-        result_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
+        # result_image = Image.fromarray(segmentation.astype('uint8'))
+        # buffered = io.BytesIO()
+        # result_image.save(buffered, format="PNG")
+        # result_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
 
-        return jsonify({"segmentation_image": result_image_base64})
+        return jsonify(segmentation)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

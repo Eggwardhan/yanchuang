@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -84,204 +85,222 @@
         button:hover {
             background-color: #333;
         }
+
         .image-container img {
             max-width: 500px;
             max-height: 500px;
             border: 1px solid #000;
-        }   
+        }
+
         .image-container {
-    position: relative; /* 这使得内部的绝对定位元素相对于此容器定位 */
-    text-align: center;
-}
+            position: relative;
+            /* 这使得内部的绝对定位元素相对于此容器定位 */
+            text-align: center;
+        }
 
-button {
-    position: absolute; /* 绝对定位按钮 */
-    right: 10px; /* 从容器的右边缘开始的距离 */
-    bottom: 10px; /* 从容器的底部开始的距离 */
-    padding: 5px 15px;
-    border: none;
-    background-color: #000;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+        button {
+            position: absolute;
+            /* 绝对定位按钮 */
+            right: 10px;
+            /* 从容器的右边缘开始的距离 */
+            bottom: 10px;
+            /* 从容器的底部开始的距离 */
+            padding: 5px 15px;
+            border: none;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-button:hover {
-    background-color: #333;
-}
+        button:hover {
+            background-color: #333;
+        }
 
-/* 左侧导航栏样式 */
+        /* 左侧导航栏样式 */
 
-/* 左侧导航栏样式 */
-.sidebar {
-    width: 200px;
-    height: calc(100vh - 100px);
-    background-color: #505A6C;  /* 蓝色背景 */
-    position: fixed;
-    top: 90px;
-    left: 0;
-    overflow-y: auto;
-}
+        /* 左侧导航栏样式 */
+        .sidebar {
+            width: 200px;
+            height: calc(100vh - 100px);
+            background-color: #505A6C;
+            /* 蓝色背景 */
+            position: fixed;
+            top: 90px;
+            left: 0;
+            overflow-y: auto;
+        }
 
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-.sidebar li {
-    padding: 10px;
-    color: #E9E9E9;  /* 灰白字体 */
-    cursor: pointer;
-    display: flex;  /* 使图标和文本水平对齐 */
-    align-items: center;  /* 垂直居中对齐内容 */
-}
+        .sidebar li {
+            padding: 10px;
+            color: #E9E9E9;
+            /* 灰白字体 */
+            cursor: pointer;
+            display: flex;
+            /* 使图标和文本水平对齐 */
+            align-items: center;
+            /* 垂直居中对齐内容 */
+        }
 
-.sidebar li:hover {
-    background-color: #0056b3;  
-}
+        .sidebar li:hover {
+            background-color: #0056b3;
+        }
 
-.sidebar i {
-    margin-right: 10px;  /* 在图标和文本之间添加一些间距 */
+        .sidebar i {
+            margin-right: 10px;
+            /* 在图标和文本之间添加一些间距 */
 
-}
-.sidebar li{
-    padding: 10px;
-    padding-left: 20px;  /* 空出15px */
-    color: #E9E9E9;  /* 灰白字体 */
-    cursor: pointer;
-    display: flex;  /* 使图标和文本水平对齐 */
-    align-items: center;  /* 垂直居中对齐内容 */
-}
-.header {
-    display: flex;  /* 使用flex布局 */
-    justify-content: space-between;  /* 两侧内容之间留有空间 */
-    background-color: #505A6C;
-    align-items: center;  /* 垂直居中对齐内容 */
-    padding: 10px 20px;  /* 添加一些内边距 */
-}
+        }
 
-.logo-container {
-    display: flex;  /* 使用flex布局 */
-    align-items: center;  /* 垂直居中对齐内容 */
-}
+        .sidebar li {
+            padding: 10px;
+            padding-left: 20px;
+            /* 空出15px */
+            color: #E9E9E9;
+            /* 灰白字体 */
+            cursor: pointer;
+            display: flex;
+            /* 使图标和文本水平对齐 */
+            align-items: center;
+            /* 垂直居中对齐内容 */
+        }
 
-.logo {
-    width: 50px;  /* 根据您的logo大小调整 */
-    height: 50px;
-    margin-right: 20px;  /* 在logo和文本之间添加一些间距 */
-}
+        .header {
+            display: flex;
+            /* 使用flex布局 */
+            justify-content: space-between;
+            /* 两侧内容之间留有空间 */
+            background-color: #505A6C;
+            align-items: center;
+            /* 垂直居中对齐内容 */
+            padding: 10px 20px;
+            /* 添加一些内边距 */
+        }
 
-.header-text h1 {
-    font-size: 20px;  /* 主标题字体大小 */
-}
+        .logo-container {
+            display: flex;
+            /* 使用flex布局 */
+            align-items: center;
+            /* 垂直居中对齐内容 */
+        }
 
-.header-text h2 {
-    font-size: 16px;  /* 次标题字体大小 */
-}
+        .logo {
+            width: 50px;
+            /* 根据您的logo大小调整 */
+            height: 50px;
+            margin-right: 20px;
+            /* 在logo和文本之间添加一些间距 */
+        }
 
-.header-text p {
-    font-size: 10px;  /* 描述文本字体大小 */
-}
+        .header-text h1 {
+            font-size: 20px;
+            /* 主标题字体大小 */
+        }
 
-.nav-buttons {
-    display: flex;  /* 使用flex布局 */
-    gap: 10px;  /* 按钮之间的间距 */
-}
-.header-text h1 {
-    margin: 2px 0;
-}
+        .header-text h2 {
+            font-size: 16px;
+            /* 次标题字体大小 */
+        }
 
-.header-text h2 {
-    margin: 1px 0;
-}
+        .header-text p {
+            font-size: 10px;
+            /* 描述文本字体大小 */
+        }
 
-.header-text p {
-    margin: 1px 0;
-}
+        .nav-buttons {
+            display: flex;
+            /* 使用flex布局 */
+            gap: 10px;
+            /* 按钮之间的间距 */
+        }
 
+        .header-text h1 {
+            margin: 2px 0;
+        }
+
+        .header-text h2 {
+            margin: 1px 0;
+        }
+
+        .header-text p {
+            margin: 1px 0;
+        }
     </style>
 </head>
+
 <body>
 
-<!-- 顶部栏 -->
-<div class="header">
-    <div class="logo-container">
-        <img src="logo.png" alt="Logo" class="logo">
-        <div class="header-text">
-            <h1>多媒体通信与模式识别实验室</h1>
-            <h2>医学病理影像智能分析和辅助诊断</h2>
-            <p>Multimedia Communication and Pattern Recognition Labs</p>
+    <!-- 顶部栏 -->
+    <div class="header">
+        <div class="logo-container">
+            <img src="./logo.png" alt="Logo" class="logo">
+            <div class="header-text">
+                <h1>多媒体通信与模式识别实验室</h1>
+                <h2>医学病理影像智能分析和辅助诊断</h2>
+                <p>Multimedia Communication and Pattern Recognition Labs</p>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <button>首页</button>
+            <button>功能列表</button>
+            <button>联系我们</button>
         </div>
     </div>
-    <div class="nav-buttons">
-        <button>首页</button>
-        <button>功能列表</button>
-        <button>联系我们</button>
-    </div>
-</div>
 
-<!-- 左侧导航栏 -->
-<div class="sidebar">
-    <ul ><i class="fas fa-cogs"></i>主体功能
-        <li><i class="fa-solid fa-circle-half-stroke"></i>多模态细胞分割 </li>
-        <li><i class="fa-solid fa-file-word"></i></i>多模态病理诊断</li>
-    </ul>
-    <!-- <ul><i class="fa-brands fa-algolia"></i>附加功能
+    <!-- 左侧导航栏 -->
+    <div class="sidebar">
+        <ul>
+            <i class="fas fa-cogs"></i>主体功能
+            <li><a href="#" onclick="showPage(1)"><i class="fa-solid fa-circle-half-stroke"></i>多模态细胞分割
+                </a></li>
+            <li><a href="#" onclick="showPage(2)"><i class="fa-solid fa-file-word"></i></i>多模态病理诊断</a>
+            </li>
+        </ul>
+        <!-- <ul><i class="fa-brands fa-algolia"></i>附加功能
     <li><i class="fa-solid fa-plus"></i>单张图像识别</li>
     <li><i class="fa-brands fa-medium"></i>模型对比</li>
     <li><i class="fa-solid fa-sliders"></i>参数调整</li>
     </ul> -->
 
-</div>
-
-<!-- 页面内容 -->
-<div class="content">
-    <!-- 第一部分 -->
-    <div class="section">
-        <h2>多模态细胞分割</h2>
-        <div class="image-container">
-            <img src="./3.jpg" alt="图a">
-            <button>转换</button>
-            <img src="./2.jpg" alt="图b">
-        </div>
-    </div>
-<!-- 
-
-    <div class="section">
-        <h2>多模病诊分析</h2>
-        <div class="image-container">
-            <img src="path_to_image.jpg" alt="图像">
-        </div>
-        <div class="text-container">
-            <div class="text-column">
-                <p>文本解释1</p>
-            </div>
-            <div class="text-column">
-                <p>文本解释2</p>
-            </div>
-            <div class="text-column">
-                <p>文本解释3</p>
-            </div>
-        </div>
     </div>
 
-    <div class="section">
-        <div class="image-container">
-            <img src="path_to_another_image.jpg" alt="另一个图像">
+    <!-- 页面内容 -->
+    <div class="content">
+        <!-- 第一部分 -->
+        <div class="section page" id="page1">
+            <h2>多模态细胞分割</h2>
+            <div class="image-container">
+                <img src="./3.jpg" alt="图a">
+                <button>转换</button>
+                <img src="./2.jpg" alt="图b">
+            </div>
         </div>
-        <div class="text-container">
-            <div class="text-column">
-                <p>文本1</p>
+
+
+        <div class="section page" id="page2">
+            <h2>多模病诊分析</h2>
+            <div class="image-container">
+                <img src="path_to_image.jpg" alt="图像">
             </div>
-            <div class="text-column">
-                <p>文本2</p>
-            </div>
-            <div class="text-column">
-                <p>文本3</p>
+            <div class="text-container">
+                <div class="text-column">
+                    <p>文本解释1</p>
+                </div>
+                <div class="text-column">
+                    <p>文本解释2</p>
+                </div>
+                <div class="text-column">
+                    <p>文本解释3</p>
+                </div>
             </div>
         </div>
     </div>
-</div> -->
-
+    <script src="script.js"></script>
 </body>
+
 </html>
