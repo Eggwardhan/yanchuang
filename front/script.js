@@ -6,9 +6,7 @@
 
 // }
 function uploadImage(pageId) {
-    console.log(pageId);
     const fileInput = document.getElementById(`fileInput${pageId}`);
-    console.log(fileInput);
     const uploadedImage = document.getElementById(`uploadedImage${pageId}`);
     
     const file = fileInput.files[0];
@@ -31,7 +29,7 @@ function uploadImage(pageId) {
         .then((data) => {
             // 显示上传的图像
             if(data &&data.segment){
-                imageElement.src='data:image/mg;base64,'+data.segmentation_image;
+                uploadedImage.src='data:image/png;base64,'+data.segmentation_image;
             }
         })
         .catch(error => {
@@ -42,7 +40,9 @@ function uploadImage(pageId) {
     }
 }
 
-
+function uploadfile2(){
+    
+}
 function showPage(pageNumber){
     var pages = document.querySelectorAll('.page');
     console.log(pages);
