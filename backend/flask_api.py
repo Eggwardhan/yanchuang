@@ -12,14 +12,13 @@ import yaml
 from shutil import copyfile
 import argparse
 import numpy as np
-
+from flask_cors import CORS
 # sys.path.append("/home/dmt218/zby/PANCLS")
 # from datasets.cellseg import CellSeg
 # from utils.logger import Logger
 # from models.custom_model_2d import Custom_Model_2D
 # from utils.slide_infer import slide_inference
 # import models.text_encoder.clip as clip
-
 sys.path.insert(0,"/home/dmt218/zby/MTCSNet")
 from yacs.config import CfgNode
 from utils.logger import Logger
@@ -28,10 +27,11 @@ from models.unetplusplus import NestedUNet as NestedUNet2
 from utils.slide_infer import slide_inference as slide_inference_mtcs
 from postprocess.postprocess import mc_distance_postprocessing, mc_distance_postprocessing_count
 
+app=Flask(__name__)
+CORS(app)
 
 args="/home/dmt218/hsh/yanchuang/backend/utils/eval_pancls.yaml"
 args = "/home/dmt218/hsh/yanchuang/backend/utils/eval_mtcs.yaml"
-app = Flask(__name__)
 def get_config(path ):
     cfg = yaml.load(open(path,'r'), Loader=yaml.FullLoader)
     cfg = CfgNode(cfg)
