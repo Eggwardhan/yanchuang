@@ -218,7 +218,8 @@ def segment():
 
         # 从请求中获取图像文件
         image_file = request.files['image']
-        path=str(uuid4())
+        path=str(uuid4())+".jpg"
+        
         path = os.path.join(path_mtcs,path)
         image_file.save(path)
         print(type(image_file))
