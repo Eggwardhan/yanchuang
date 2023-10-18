@@ -27,11 +27,12 @@ function uploadImage(pageId) {
             method: 'POST',
             body: formData
         })
-        .then(response => response.blob())  // 假设服务器返回图像数据
-        .then(blob => {
+        .then(response => response.json())  // 假设服务器返回图像数据
+        .then((data) => {
             // 显示上传的图像
-            const imageURL = URL.createObjectURL(blob);
-            uploadedImage.src = imageURL;
+            if(data &&data.segment){
+                imageElement.src='data:image/mg;base64,'+data.segmentation_image;
+            }
         })
         .catch(error => {
             console.error('POST请求失败:', error);
