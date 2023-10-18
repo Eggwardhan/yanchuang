@@ -13,6 +13,7 @@ from shutil import copyfile
 import argparse
 import numpy as np
 from flask_cors import CORS
+from uuid import uuid4
 # sys.path.append("/home/dmt218/zby/PANCLS")
 # from datasets.cellseg import CellSeg
 # from utils.logger import Logger
@@ -32,6 +33,9 @@ CORS(app)
 
 args="/home/dmt218/hsh/yanchuang/backend/utils/eval_pancls.yaml"
 args = "/home/dmt218/hsh/yanchuang/backend/utils/eval_mtcs.yaml"
+
+path_mtcs="/home/dmt218/hsh/yanchuang/backend/workspace/2D_final"
+
 def get_config(path ):
     cfg = yaml.load(open(path,'r'), Loader=yaml.FullLoader)
     cfg = CfgNode(cfg)
@@ -214,7 +218,11 @@ def segment():
 
         # 从请求中获取图像文件
         image_file = request.files['image']
+        path=str(uuid4())
+        path = os.path.join(path_mtcs,path)
+        image_file.save(path)
         print(type(image_file))
+        print(args)
         mtcs_dataset = WSCellSeg(args)
         mtcs_dataloader= DataLoader(mtcs_dataset,batch_size= 1,num_workers=1)
         # image = Image.open(image_file).convert('L')  # 转换为灰度图像
@@ -258,5 +266,5 @@ def pancls():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000,debug=True)
 # 处理上传的图像并进行分割推理
