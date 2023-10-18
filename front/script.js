@@ -6,9 +6,7 @@
 
 // }
 function uploadImage(pageId) {
-    console.log(pageId);
     const fileInput = document.getElementById(`fileInput${pageId}`);
-    console.log(fileInput);
     const uploadedImage = document.getElementById(`uploadedImage${pageId}`);
     const elementImage = document.getElementById('result-image')
     const file = fileInput.files[0];
@@ -42,7 +40,26 @@ function uploadImage(pageId) {
     }
 }
 
+function uploadFiles() {
+    var formData = new FormData();
+    var folderInput = document.getElementById('folder');
+    var csvInput = document.getElementById('csv');
 
+    for (var i = 0; i < folderInput.files.length; i++) {
+        formData.append('folder', folderInput.files[i]);
+    }
+    formData.append('csv', csvInput.files[0]);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/your-upload-endpoint', true); // 替换为您的服务器端上传端点的URL
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById('response').innerHTML = xhr.responseText;
+        }
+    };
+
+    xhr.send(formData);
+}
 function showPage(pageNumber){
     var pages = document.querySelectorAll('.page');
     console.log(pages);

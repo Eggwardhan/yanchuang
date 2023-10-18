@@ -15,6 +15,7 @@ import numpy as np
 from flask_cors import CORS
 from uuid import uuid4
 from util.WSCellSeg import WSCellSeg
+from skimage.color import label2rgb
 # sys.path.append("/home/dmt218/zby/PANCLS")
 # from datasets.cellseg import CellSeg
 # from utils.logger import Logger
@@ -131,10 +132,10 @@ def segment_mtcs_image(model,dloader):
         _, post_heat_seeds, post_heat_seg = mc_distance_postprocessing(heat_scores, args.infer_threshold, args.infer_seed, downsample=False)
         # vor head
         _, post_pred_seeds, post_pred_vor_seg = mc_distance_postprocessing(pred_vor_scores, args.infer_threshold, args.infer_seed, downsample=False)
-        # count head
-        # _, post_pred_seeds, count_post_pred_seg = mc_distance_postprocessing_count(pred_scores, args.infer_threshold, seeds, downsample=False)
-        # _, post_heat_seeds, count_post_heat_seg = mc_distance_postprocessing_count(heat_scores, args.infer_threshold, seeds, downsample=False)
-    return post_pred_seg
+        vis = label2rgb(post_pred_seg, bg_label=0)*255
+        
+
+    return vis.astype('uint8')
         
 def segment_pancls_image(model,dloader,test_fusion='mean'):
     for ii, item in enumerate(dloader):
@@ -223,23 +224,27 @@ def segment():
     path=str(uuid4())
     path = os.path.join(path_mtcs,path)
     os.mkdir(path)
-    image_file.save(os.path.join(path,"1.jpg"))
-    # print(type(image_file))
-    # print(args)
+    image_file.save(os.path.join(path,"1.png"))
+
     args.test_image_dir=path
     mtcs_dataset = WSCellSeg(args)
     mtcs_dataloader= DataLoader(mtcs_dataset,batch_size= 1,num_workers=1)
     segmentation=segment_mtcs_image(model=modelCellseg,dloader=mtcs_dataloader)
-    # print(segmentation)
-    # print(type(segmentation))
-
-    # 将分割结果nparray图像转为Base64编码
+    print(segmentation.shape)
+    print(type(segmentation))
+    import cv2
+    # Image.fromarray(segmentation).save('fuck.png')
+    image = cv2.cvtColor(segmentation,cv2.COLOR_BGR2RGB)
+    # cv2.imwrite('fuck.png',segmentation)
     
-    result_image = Image.fromarray(segmentation.astype('uint8'))
-    buffered = io.BytesIO()
-    result_image.save(buffered, format="PNG")
-    result_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
-
+    # 将分割结果nparray图像转为Base64编码
+    result_image = cv2.imencode('.jpg',image)[1].tostring()
+    result_image_base64=base64.b64encode(result_image).decode('utf-8')
+    # result_image = Image.fromarray(segmentation.astype('uint8'))
+    # buffered = io.BytesIO()
+    # result_image.save(buffered, format="PNG")
+    # result_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
+    # print(result_image)
     return jsonify({"segmentation_image": result_image_base64})
         
     # except Exception as e:
@@ -249,13 +254,20 @@ def segment():
 @app.route('/pancls',methods=['POST'])
 def pancls():
     try:
-        if 'image' not in request.files:
-            return jsonify({"error": "No image provided."}), 400
-
-        # 从请求中获取图像文件
-        image_file = request.files['image']
-        image = Image.open(image_file).convert('L')  # 转换为灰度图像
-
+        if 'folder' not in request.files or 'csv' not in request.files:
+            return 'No files provided', 400
+        # 获取上传的文件
+        folder_files = request.files.getlist('folder')
+        csv_file = request.files['csv']
+        
+        # 保存上传的文件
+        path=str(uuid4())
+        path = os.path.join(path_mtcs,path)
+        os.mkdir(path)
+        
+        for file in folder_files:
+            file.save(os.path.join(path,file.filename))  # 将文件保存到指定目录
+        csv_file.save(os.path.join(path,csv_file.filename))  # 保存CSV文件
         # 进行图像分割
         segmentation = segment_pancls_image(modelPancls,image_tensor,test_fusion="mean")
 
