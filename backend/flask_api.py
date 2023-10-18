@@ -254,13 +254,20 @@ def segment():
 @app.route('/pancls',methods=['POST'])
 def pancls():
     try:
-        if 'image' not in request.files:
-            return jsonify({"error": "No image provided."}), 400
-
-        # 从请求中获取图像文件
-        image_file = request.files['image']
-        image = Image.open(image_file).convert('L')  # 转换为灰度图像
-
+        if 'folder' not in request.files or 'csv' not in request.files:
+            return 'No files provided', 400
+        # 获取上传的文件
+        folder_files = request.files.getlist('folder')
+        csv_file = request.files['csv']
+        
+        # 保存上传的文件
+        path=str(uuid4())
+        path = os.path.join(path_mtcs,path)
+        os.mkdir(path)
+        
+        for file in folder_files:
+            file.save(os.path.join(path,file.filename))  # 将文件保存到指定目录
+        csv_file.save(os.path.join(path,csv_file.filename))  # 保存CSV文件
         # 进行图像分割
         segmentation = segment_pancls_image(modelPancls,image_tensor,test_fusion="mean")
 

@@ -282,9 +282,13 @@
 
         <div class="section page" id="page2" style="display:none">
             <h2>多模病诊分析</h2>
-            <div class="image-container">
-                <img src="path_to_image.jpg" alt="图像">
-            </div>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <label for="folder">上传文件夹:</label>
+                <input type="file" id="folder" webkitdirectory directory multiple><br>
+                <label for="csv">上传CSV文件:</label>
+                <input type="file" id="csv"><br>
+                <button type="button" onclick="uploadFiles()">上传</button>
+            </form>
             <div class="text-container">
                 <div class="text-column">
                     <p>文本解释1</p>
