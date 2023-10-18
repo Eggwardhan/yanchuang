@@ -14,6 +14,7 @@ import argparse
 import numpy as np
 from flask_cors import CORS
 from uuid import uuid4
+from util.WSCellSeg import WSCellSeg
 # sys.path.append("/home/dmt218/zby/PANCLS")
 # from datasets.cellseg import CellSeg
 # from utils.logger import Logger
@@ -23,7 +24,6 @@ from uuid import uuid4
 sys.path.insert(0,"/home/dmt218/zby/MTCSNet")
 from yacs.config import CfgNode
 from utils.logger import Logger
-from datasets.WSCellseg import WSCellSeg
 from models.unetplusplus import NestedUNet as NestedUNet2
 from utils.slide_infer import slide_inference as slide_inference_mtcs
 from postprocess.postprocess import mc_distance_postprocessing, mc_distance_postprocessing_count
@@ -31,8 +31,8 @@ from postprocess.postprocess import mc_distance_postprocessing, mc_distance_post
 app=Flask(__name__)
 CORS(app)
 
-args="/home/dmt218/hsh/yanchuang/backend/utils/eval_pancls.yaml"
-args = "/home/dmt218/hsh/yanchuang/backend/utils/eval_mtcs.yaml"
+args="/home/dmt218/hsh/yanchuang/backend/util/eval_pancls.yaml"
+args = "/home/dmt218/hsh/yanchuang/backend/util/eval_mtcs.yaml"
 
 path_mtcs="/home/dmt218/hsh/yanchuang/backend/workspace/2D_final"
 
@@ -55,7 +55,7 @@ args , logger = get_config(args)
 # modelPancls.eval()
 modelCellseg =NestedUNet2(args)
 modelCellseg.load_state_dict( torch.load("/home/dmt218/zby/MTCSNet/workspace/All/All_All_unetpp50rvdc_cls2_1head_ep200_b8_crp512_full_cn/best_model.pth"),strict=True)
-
+modelCellseg=modelCellseg.cuda()
 modelCellseg.eval()
 
 # pancls_dataset= CellSeg(args,logger)
@@ -73,6 +73,8 @@ def preprocess_pancls_image(image):
 def segment_mtcs_image(model,dloader):
     for ii, item in enumerate(dloader):
         imgs, annos, img_meta = item
+        print(img_meta)
+        print(imgs)
         preds_list = []
         preds_vor_list = []
         certs_list = []
@@ -87,14 +89,14 @@ def segment_mtcs_image(model,dloader):
             img = torch.concat((img, deg_map.unsqueeze(1)), dim=1)
             
             with torch.no_grad():
-                preds, preds_vor, certs, heats, degs, counts = slide_inference(model, img, img_meta, rescale=True, args=args, valid_region=valid_region)
+                preds, preds_vor, certs, heats, degs = slide_inference_mtcs(model, img, img_meta, rescale=True, args=args, valid_region=valid_region)
             # Classification
             preds_list.append(preds.detach().cpu())
             preds_vor_list.append(preds_vor.detach().cpu())
             certs_list.append(certs.detach().cpu())
             heats_list.append(heats.detach().cpu())
             degs_list.append(degs.detach().cpu())
-            counts_list.append(counts.detach().cpu())
+            # counts_list.append(counts.detach().cpu())
         # Fusion
         if args.test_fusion =='mean':
             fused_preds = torch.mean(torch.stack(preds_list,dim=0), dim=0)
@@ -102,14 +104,14 @@ def segment_mtcs_image(model,dloader):
             fused_certs = torch.mean(torch.stack(certs_list,dim=0), dim=0)
             fused_heats = torch.mean(torch.stack(heats_list,dim=0), dim=0)
             fused_degs = torch.mean(torch.stack(degs_list,dim=0), dim=0)
-            fused_counts = torch.mean(torch.stack(counts_list, dim=0), dim=0)
+            # fused_counts = torch.mean(torch.stack(counts_list, dim=0), dim=0)
         if args.test_fusion == 'max':
             fused_preds,_ = torch.max(torch.stack(preds_list,dim=0), dim=0)
             fused_preds_vor,_ = torch.max(torch.stack(preds_vor_list, dim=0), dim=0)
             fused_certs,_ = torch.max(torch.stack(certs_list,dim=0), dim=0)
             fused_heats,_ = torch.max(torch.stack(heats_list,dim=0), dim=0)
             fused_degs,_ = torch.max(torch.stack(degs_list,dim=0), dim=0)
-            fused_counts,_ = torch.max(torch.stack(counts_list,dim=0), dim=0)
+            # fused_counts,_ = torch.max(torch.stack(counts_list,dim=0), dim=0)
           
         fused_preds = torch.softmax(fused_preds, dim=1)
         pred_cls = torch.argmax(fused_preds,dim=1).squeeze().numpy()
@@ -120,9 +122,9 @@ def segment_mtcs_image(model,dloader):
         heat_scores = torch.sigmoid(fused_heats[:,0,:,:]).squeeze().numpy()
         deg_scores = fused_degs[:,:,:,:].squeeze().numpy()*args.distance_scale
         
-        count_scores = fused_counts.squeeze().numpy()/args.count_scale
-        seed_thres = np.max(count_scores)*0.7
-        seeds = count_scores>seed_thres         # can be used for
+        # count_scores = fused_counts.squeeze().numpy()/args.count_scale
+        # seed_thres = np.max(count_scores)*0.7
+        # seeds = count_scores>seed_thres         # can be used for
         
         # classifier head
         _, post_pred_seeds, post_pred_seg = mc_distance_postprocessing(pred_scores, args.infer_threshold, args.infer_seed, downsample=False)
@@ -130,9 +132,9 @@ def segment_mtcs_image(model,dloader):
         # vor head
         _, post_pred_seeds, post_pred_vor_seg = mc_distance_postprocessing(pred_vor_scores, args.infer_threshold, args.infer_seed, downsample=False)
         # count head
-        _, post_pred_seeds, count_post_pred_seg = mc_distance_postprocessing_count(pred_scores, args.infer_threshold, seeds, downsample=False)
-        _, post_heat_seeds, count_post_heat_seg = mc_distance_postprocessing_count(heat_scores, args.infer_threshold, seeds, downsample=False)
-    return fused_preds
+        # _, post_pred_seeds, count_post_pred_seg = mc_distance_postprocessing_count(pred_scores, args.infer_threshold, seeds, downsample=False)
+        # _, post_heat_seeds, count_post_heat_seg = mc_distance_postprocessing_count(heat_scores, args.infer_threshold, seeds, downsample=False)
+    return post_pred_seg
         
 def segment_pancls_image(model,dloader,test_fusion='mean'):
     for ii, item in enumerate(dloader):
@@ -212,36 +214,37 @@ def segment_pancls_image(model,dloader,test_fusion='mean'):
 # API端点，接收POST请求
 @app.route('/segment', methods=['POST'])
 def segment():
-    try:
-        if 'image' not in request.files:
-            return jsonify({"error": "No image provided."}), 400
+    # try:
+    if 'image' not in request.files:
+        return jsonify({"error": "No image provided."}), 400
 
-        # 从请求中获取图像文件
-        image_file = request.files['image']
-        path=str(uuid4())+".jpg"
+    # 从请求中获取图像文件
+    image_file = request.files['image']
+    path=str(uuid4())
+    path = os.path.join(path_mtcs,path)
+    os.mkdir(path)
+    image_file.save(os.path.join(path,"1.jpg"))
+    # print(type(image_file))
+    # print(args)
+    args.test_image_dir=path
+    mtcs_dataset = WSCellSeg(args)
+    mtcs_dataloader= DataLoader(mtcs_dataset,batch_size= 1,num_workers=1)
+    segmentation=segment_mtcs_image(model=modelCellseg,dloader=mtcs_dataloader)
+    # print(segmentation)
+    # print(type(segmentation))
+
+    # 将分割结果nparray图像转为Base64编码
+    
+    result_image = Image.fromarray(segmentation.astype('uint8'))
+    buffered = io.BytesIO()
+    result_image.save(buffered, format="PNG")
+    result_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
+
+    return jsonify({"segmentation_image": result_image_base64})
         
-        path = os.path.join(path_mtcs,path)
-        image_file.save(path)
-        print(type(image_file))
-        print(args)
-        mtcs_dataset = WSCellSeg(args)
-        mtcs_dataloader= DataLoader(mtcs_dataset,batch_size= 1,num_workers=1)
-        # image = Image.open(image_file).convert('L')  # 转换为灰度图像
-        # image_tensor = preprocess_image(image)
-
-        # # 进行图像分割
-        # segmentation = segment_image(image_tensor)
-
-        # 将分割结果图像转为Base64编码
-        # result_image = Image.fromarray(segmentation.astype('uint8'))
-        # buffered = io.BytesIO()
-        # result_image.save(buffered, format="PNG")
-        # result_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
-
-        # return jsonify({"segmentation_image": result_image_base64})
-
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    # except Exception as e:
+    #     print(e)
+    #     return jsonify({"error": str(e)}), 500
     
 @app.route('/pancls',methods=['POST'])
 def pancls():
@@ -264,8 +267,9 @@ def pancls():
 
         return jsonify(segmentation)
     except Exception as e:
+        print(e)
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000,debug=True)
+    app.run(host='0.0.0.0', port=5000,debug=False)
 # 处理上传的图像并进行分割推理
