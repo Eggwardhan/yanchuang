@@ -18,7 +18,7 @@ function uploadImage(pageId) {
         // 如果页面2需要上传其他数据，也可以在此处添加到formData中
         
         // 更改此处的URL为您的后端接口地址
-        const apiUrl = (pageId === 'page1') ? '/api/upload1' : '/api/upload2';
+        const apiUrl = (pageId === 'page1') ? 'http://10.112.188.232:5000/segment' : '/api/upload2';
         
         // 发送POST请求
         fetch(apiUrl, {

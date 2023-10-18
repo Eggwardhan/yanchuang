@@ -3,7 +3,7 @@ import base64
 import io
 import torch
 from torch.utils.data import DataLoader
-from torchvision import modelsh
+from torchvision import models
 import torchvision.transforms as transforms
 from PIL import Image
 from flask import Flask, request, jsonify
@@ -13,22 +13,24 @@ from shutil import copyfile
 import argparse
 import numpy as np
 
-sys.path.append("/home/dmt218/zby/PANCLS")
-from datasets.cellseg import CellSeg
-from utils.logger import Logger
-from models.custom_model_2d import Custom_Model_2D
-from utils.slide_infer import slide_inference
-import models.text_encoder.clip as clip
+# sys.path.append("/home/dmt218/zby/PANCLS")
+# from datasets.cellseg import CellSeg
+# from utils.logger import Logger
+# from models.custom_model_2d import Custom_Model_2D
+# from utils.slide_infer import slide_inference
+# import models.text_encoder.clip as clip
 
-sys.path.append(0,"/home/dmt218/zby/MTCSNet")
+sys.path.insert(0,"/home/dmt218/zby/MTCSNet")
 from yacs.config import CfgNode
+from utils.logger import Logger
 from datasets.WSCellseg import WSCellSeg
 from models.unetplusplus import NestedUNet as NestedUNet2
-from utils.slide_infer import slide_inference_mtcs
+from utils.slide_infer import slide_inference as slide_inference_mtcs
 from postprocess.postprocess import mc_distance_postprocessing, mc_distance_postprocessing_count
 
 
 args="/home/dmt218/hsh/yanchuang/backend/utils/eval_pancls.yaml"
+args = "/home/dmt218/hsh/yanchuang/backend/utils/eval_mtcs.yaml"
 app = Flask(__name__)
 def get_config(path ):
     cfg = yaml.load(open(path,'r'), Loader=yaml.FullLoader)
@@ -36,7 +38,7 @@ def get_config(path ):
     os.makedirs(cfg.workspace,exist_ok=True)
     os.makedirs(os.path.join(cfg.workspace, cfg.results_val), exist_ok=True)
     os.makedirs(os.path.join(cfg.workspace, cfg.results_test), exist_ok=True)
-    if args.train_pass == True:
+    if "train_pass" in args and args.train_pass == True:
         copyfile(args.config, os.path.join(cfg.workspace, os.path.basename(args.config)))
     logger =Logger(cfg)
     logger.info(cfg)
@@ -47,21 +49,18 @@ args , logger = get_config(args)
 # modelPancls = NestedUNet(args)  # 定义了一个合适的模型类
 # modelPancls = torch.load("/home/dmt218/zby/PANCLS/workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5/best_model.pth")  # 替换成你的模型路径
 # modelPancls.eval()
-modelCellseg =NestedUNet2(args,mode = args.mode)
-modelCellseg = torch.load("/home/dmt218/zby/MTCSNet/workspace/All/All_All_unetpp50rvdc_cls2_1head_ep200_b8_crp512_full_cn/best_model.pth")
+modelCellseg =NestedUNet2(args)
+modelCellseg.load_state_dict( torch.load("/home/dmt218/zby/MTCSNet/workspace/All/All_All_unetpp50rvdc_cls2_1head_ep200_b8_crp512_full_cn/best_model.pth"),strict=True)
+
 modelCellseg.eval()
 
 # pancls_dataset= CellSeg(args,logger)
 # pancls_dataloader = DataLoader(pancls_dataset)
-mtcs_dataset = WSCellSeg(args)
-mtcs_dataloader= DataLoader(mtcs_dataset,batch_size= 1,num_workers=1)
 
 
 
 # 图像预处理函数
 def preprocess_pancls_image(image):
-    
- 
     transform = transforms.Compose([transforms.ToPILImage(), transforms.ToTensor()])
     image = transform(image).unsqueeze(0)
     return image
@@ -69,8 +68,6 @@ def preprocess_pancls_image(image):
 # 图像分割函数
 def segment_mtcs_image(model,dloader):
     for ii, item in enumerate(dloader):
-        if ii%10 == 0:
-            logger.info("Testing the {}/{} images...".format(ii,len(dloader)))
         imgs, annos, img_meta = item
         preds_list = []
         preds_vor_list = []
@@ -131,6 +128,7 @@ def segment_mtcs_image(model,dloader):
         # count head
         _, post_pred_seeds, count_post_pred_seg = mc_distance_postprocessing_count(pred_scores, args.infer_threshold, seeds, downsample=False)
         _, post_heat_seeds, count_post_heat_seg = mc_distance_postprocessing_count(heat_scores, args.infer_threshold, seeds, downsample=False)
+    return fused_preds
         
 def segment_pancls_image(model,dloader,test_fusion='mean'):
     for ii, item in enumerate(dloader):
@@ -186,7 +184,7 @@ def segment_pancls_image(model,dloader,test_fusion='mean'):
                 pred_invade_dict[anno_item][img_names[b]]= pred_invade_cls[b]
                 pred_surgery_dict[anno_item][img_names[b]] = pred_surgery_cls[b]
                 pred_essential_dict[anno_item][img_names[b]] = pred_essential_cls[b]
-                score_invade_dict[anno_item][img_names[b]]. = pred_invade[b][1].item()
+                score_invade_dict[anno_item][img_names[b]] = pred_invade[b][1].item()
                 score_surgery_dict[anno_item][img_names[b]] = pred_surgery[b][1].item()
                 score_essential_dict[anno_item][img_names[b]] = pred_essential[b][1].item()
                 label_invade_dict[anno_item][img_names[b]] = img_meta['label_invade'][b].item()
@@ -216,19 +214,22 @@ def segment():
 
         # 从请求中获取图像文件
         image_file = request.files['image']
-        image = Image.open(image_file).convert('L')  # 转换为灰度图像
-        image_tensor = preprocess_image(image)
+        print(type(image_file))
+        mtcs_dataset = WSCellSeg(args)
+        mtcs_dataloader= DataLoader(mtcs_dataset,batch_size= 1,num_workers=1)
+        # image = Image.open(image_file).convert('L')  # 转换为灰度图像
+        # image_tensor = preprocess_image(image)
 
-        # 进行图像分割
-        segmentation = segment_image(image_tensor)
+        # # 进行图像分割
+        # segmentation = segment_image(image_tensor)
 
         # 将分割结果图像转为Base64编码
-        result_image = Image.fromarray(segmentation.astype('uint8'))
-        buffered = io.BytesIO()
-        result_image.save(buffered, format="PNG")
-        result_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
+        # result_image = Image.fromarray(segmentation.astype('uint8'))
+        # buffered = io.BytesIO()
+        # result_image.save(buffered, format="PNG")
+        # result_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
 
-        return jsonify({"segmentation_image": result_image_base64})
+        # return jsonify({"segmentation_image": result_image_base64})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
