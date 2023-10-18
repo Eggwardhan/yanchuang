@@ -6,7 +6,9 @@
 
 // }
 function uploadImage(pageId) {
+    console.log(pageId);
     const fileInput = document.getElementById(`fileInput${pageId}`);
+    console.log(fileInput);
     const uploadedImage = document.getElementById(`uploadedImage${pageId}`);
     
     const file = fileInput.files[0];
