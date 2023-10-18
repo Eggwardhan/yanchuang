@@ -10,7 +10,7 @@ function uploadImage(pageId) {
     const fileInput = document.getElementById(`fileInput${pageId}`);
     console.log(fileInput);
     const uploadedImage = document.getElementById(`uploadedImage${pageId}`);
-    
+    const elementImage = document.getElementById('result-image')
     const file = fileInput.files[0];
     
     if (file) {
@@ -30,8 +30,8 @@ function uploadImage(pageId) {
         .then(response => response.json())  // 假设服务器返回图像数据
         .then((data) => {
             // 显示上传的图像
-            if(data &&data.segment){
-                imageElement.src='data:image/mg;base64,'+data.segmentation_image;
+            if(data &&data.segmentation_image){
+                elementImage.src='data:image/jpeg;base64,'+data.segmentation_image;
             }
         })
         .catch(error => {
