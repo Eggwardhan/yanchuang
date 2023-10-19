@@ -8,15 +8,13 @@
 function uploadImage(pageId) {
     const fileInput = document.getElementById(`fileInput${pageId}`);
     const uploadedImage = document.getElementById(`uploadedImage${pageId}`);
-    const elementImage = document.getElementById('result-image')
+    const elementImage = document.getElementById('returnImagepage1')
     const file = fileInput.files[0];
     
     if (file) {
         const formData = new FormData();
         formData.append('image', file);
-        
         // 如果页面2需要上传其他数据，也可以在此处添加到formData中
-        
         // 更改此处的URL为您的后端接口地址
         const apiUrl = (pageId === 'page1') ? 'http://10.112.188.232:5000/segment' : '/api/upload2';
         
@@ -29,6 +27,7 @@ function uploadImage(pageId) {
         .then((data) => {
             // 显示上传的图像
             if(data &&data.segmentation_image){
+                uploadedImage
                 elementImage.src='data:image/jpeg;base64,'+data.segmentation_image;
             }
         })
@@ -54,7 +53,8 @@ function uploadFiles() {
     xhr.open('POST', 'http://10.112.188.232:5000/pancls', true); // 替换为您的服务器端上传端点的URL
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            data = xhr.response
+            data = JSON.parse(xhr.response);
+            console.log(xhr);
             const dcmElement = document.getElementById('dcm');
             const text1Element = document.getElementById('text1');
             const text2Element = document.getElementById('text2');

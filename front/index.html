@@ -8,225 +8,136 @@
     <title>前端页面示例</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* 基础样式 */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fff;
-            color: #000;
-        }
-        /* 左侧导航栏样式 */
-        .sidebar {
-            width: 200px;
-            height: 100vh;
-            background-color: #000;
-            position: fixed;
-            top: 0;
-            left: 0;
-            overflow-y: auto;
-        }
+       /* Base styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #000;
+}
 
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
+/* Header styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #505A6C;
+    align-items: center;
+    padding: 10px 20px;
+    
+}
 
-        .sidebar li {
-            padding: 10px;
-            color: #fff;
-            cursor: pointer;
-        }
+.logo-container {
+    display: flex;
+    align-items: center;
+}
 
-        .sidebar li:hover {
-            background-color: #333;
-        }
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
 
-        /* 页面内容样式 */
-        .content {
-            margin-left: 210px;
-            padding: 20px;
-        }
+.header-text h1 {
+    font-size: 20px;
+    margin: 2px 0;
+}
 
-        .section {
-            margin-bottom: 20px;
-        }
+.header-text h2 {
+    font-size: 16px;
+    margin: 1px 0;
+}
 
-        .image-container {
-            text-align: center;
-        }
+.header-text p {
+    font-size: 10px;
+    margin: 1px 0;
+}
 
-        .image-container img {
-            max-width: 100%;
-        }
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
 
-        .text-container {
-            display: flex;
-            justify-content: space-between;
-        }
+/* Sidebar styles */
+.sidebar {
+    width: 200px;
+    height: calc(100vh-90px);
+    background-color: #505A6C;
+    position: fixed;
+    top: 90px;
+    left: 0;
+    overflow-y: auto;
+}
 
-        .text-column {
-            flex: 1;
-            margin: 10px;
-        }
+.sidebar ul {
+    list-style-type: none;
+    padding: 1;
+    top:200px;
+}
 
-        button {
-            padding: 5px 15px;
-            border: none;
-            background-color: #000;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+.sidebar li {
+    padding: 10px 20px 10px 20px;
+    color: #E9E9E9;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
 
-        button:hover {
-            background-color: #333;
-        }
+.sidebar li:hover {
+    background-color: #0056b3;
+}
 
-        .image-container img {
-            max-width: 500px;
-            max-height: 500px;
-            border: 1px solid #000;
-        }
+.sidebar i {
+    margin-right: 10px;
+}
 
-        .image-container {
-            position: relative;
-            /* 这使得内部的绝对定位元素相对于此容器定位 */
-            text-align: center;
-        }
+/* Content styles */
+.content {
+    margin-left: 210px;
+    padding: 20px;
+}
 
-        button {
-            position: absolute;
-            /* 绝对定位按钮 */
-            right: 10px;
-            /* 从容器的右边缘开始的距离 */
-            bottom: 10px;
-            /* 从容器的底部开始的距离 */
-            padding: 5px 15px;
-            border: none;
-            background-color: #000;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+.section {
+    margin-bottom: 20px;
+}
 
-        button:hover {
-            background-color: #333;
-        }
+.image-container {
+    position: relative;
+    text-align: center;
+}
 
-        /* 左侧导航栏样式 */
+.image-container img {
+    max-width: 500px;
+    max-height: 500px;
+    border: 1px solid #000;
+}
 
-        /* 左侧导航栏样式 */
-        .sidebar {
-            width: 200px;
-            height: calc(100vh - 100px);
-            background-color: #505A6C;
-            /* 蓝色背景 */
-            position: fixed;
-            top: 90px;
-            left: 0;
-            overflow-y: auto;
-        }
+button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 5px 15px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
+button:hover {
+    background-color: #333;
+}
 
-        .sidebar li {
-            padding: 10px;
-            color: #E9E9E9;
-            /* 灰白字体 */
-            cursor: pointer;
-            display: flex;
-            /* 使图标和文本水平对齐 */
-            align-items: center;
-            /* 垂直居中对齐内容 */
-        }
+.text-container {
+    display: flex;
+    justify-content: space-between;
+}
 
-        .sidebar li:hover {
-            background-color: #0056b3;
-        }
+.text-column {
+    flex: 1;
+    margin: 10px;
+}
 
-        .sidebar i {
-            margin-right: 10px;
-            /* 在图标和文本之间添加一些间距 */
-
-        }
-
-        .sidebar li {
-            padding: 10px;
-            padding-left: 20px;
-            /* 空出15px */
-            color: #E9E9E9;
-            /* 灰白字体 */
-            cursor: pointer;
-            display: flex;
-            /* 使图标和文本水平对齐 */
-            align-items: center;
-            /* 垂直居中对齐内容 */
-        }
-
-        .header {
-            display: flex;
-            /* 使用flex布局 */
-            justify-content: space-between;
-            /* 两侧内容之间留有空间 */
-            background-color: #505A6C;
-            align-items: center;
-            /* 垂直居中对齐内容 */
-            padding: 10px 20px;
-            /* 添加一些内边距 */
-        }
-
-        .logo-container {
-            display: flex;
-            /* 使用flex布局 */
-            align-items: center;
-            /* 垂直居中对齐内容 */
-        }
-
-        .logo {
-            width: 50px;
-            /* 根据您的logo大小调整 */
-            height: 50px;
-            margin-right: 20px;
-            /* 在logo和文本之间添加一些间距 */
-        }
-
-        .header-text h1 {
-            font-size: 20px;
-            /* 主标题字体大小 */
-        }
-
-        .header-text h2 {
-            font-size: 16px;
-            /* 次标题字体大小 */
-        }
-
-        .header-text p {
-            font-size: 10px;
-            /* 描述文本字体大小 */
-        }
-
-        .nav-buttons {
-            display: flex;
-            /* 使用flex布局 */
-            gap: 10px;
-            /* 按钮之间的间距 */
-        }
-
-        .header-text h1 {
-            margin: 2px 0;
-        }
-
-        .header-text h2 {
-            margin: 1px 0;
-        }
-
-        .header-text p {
-            margin: 1px 0;
-        }
     </style>
 </head>
 
@@ -258,11 +169,7 @@
             <li><a href="#" onclick="showPage(2)"><i class="fa-solid fa-file-word"></i></i>多模态病理诊断</a>
             </li>
         </ul>
-        <!-- <ul><i class="fa-brands fa-algolia"></i>附加功能
-    <li><i class="fa-solid fa-plus"></i>单张图像识别</li>
-    <li><i class="fa-brands fa-medium"></i>模型对比</li>
-    <li><i class="fa-solid fa-sliders"></i>参数调整</li>
-    </ul> -->
+ 
 
     </div>
 
@@ -273,9 +180,9 @@
             <h2>多模态细胞分割</h2>
             <div class="image-container">
                 <input type="file" id="fileInputpage1" accept="image/*">
-                <img id="uploadImagepage1" src="./1.jpg" alt="图a">
+                <img id="uploadImagepage1" src="" alt="图a">
+                <img id="returnImagepage1" src="" alt="图b">
                 <button onclick="uploadImage('page1')">转换</button>
-                <img id=" " src="./2.jpg" alt="图b">
             </div>
         </div>
 
