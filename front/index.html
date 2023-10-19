@@ -24,7 +24,6 @@ body {
     background-color: #505A6C;
     align-items: center;
     padding: 10px 20px;
-    
 }
 
 .logo-container {
@@ -61,7 +60,7 @@ body {
 /* Sidebar styles */
 .sidebar {
     width: 200px;
-    height: calc(100vh-90px);
+    height: calc(100vh - 100px);
     background-color: #505A6C;
     position: fixed;
     top: 90px;
@@ -71,8 +70,7 @@ body {
 
 .sidebar ul {
     list-style-type: none;
-    padding: 1;
-    top:200px;
+    padding: 0;
 }
 
 .sidebar li {
@@ -179,7 +177,7 @@ button:hover {
         <div class="section page" id="page1">
             <h2>多模态细胞分割</h2>
             <div class="image-container">
-                <input type="file" id="fileInputpage1" accept="image/*">
+                <input type="file" id="fileInputpage1" accept="image/*" onchang="showUploadImg">
                 <img id="uploadImagepage1" src="" alt="图a">
                 <img id="returnImagepage1" src="" alt="图b">
                 <button onclick="uploadImage('page1')">转换</button>

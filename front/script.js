@@ -5,12 +5,25 @@
 //     content.classList.toggle('active');
 
 // }
+function showUploadImg(input){
+    var file = input.files[0];
+    var url = window.URL.createObjectURL(file)
+    document.getElemtById('upload').src=url
+}
 function uploadImage(pageId) {
     const fileInput = document.getElementById(`fileInput${pageId}`);
-    const uploadedImage = document.getElementById(`uploadedImage${pageId}`);
+    const uploadedImage = document.getElementById(`uploadedImagepage1`);
     const elementImage = document.getElementById('returnImagepage1')
     const file = fileInput.files[0];
-    
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    console.log(reader.result);
+    var url = window.URL.createObjectURL(file);
+    console.log(url);
+    reader.onload=function(){
+        uploadedImage.src=reader.result;
+        uploadedImage.src = url;
+    }
     if (file) {
         const formData = new FormData();
         formData.append('image', file);
