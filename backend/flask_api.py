@@ -22,11 +22,11 @@ from util.read_excel import read_item
 from PANCLS.utils.eval_2d import vote_w_esse_infer,format_result
 from util.unetplusplus import NestedUNet as NestedUNet2
 # sys.path.append("/home/dmt218/zby/")
+sys.path.insert(0,"/home/dmt218/zby/PANCLS")
+from models.custom_model_2d import Custom_Model_2D
 # from datasets.cellseg import CellSeg
 from PANCLS.utils.logger import Logger
-from PANCLS.models.custom_model_2d import Custom_Model_2D
 import PANCLS.models.text_encoder.clip as clip
-# sys.path.insert(0,"/home/dmt218/zby/")
 from yacs.config import CfgNode
 from MTCSNet.utils.logger import Logger
 from MTCSNet.utils.slide_infer import slide_inference as slide_inference_mtcs
@@ -55,19 +55,19 @@ def get_config(path ):
 
 args, logger = get_config(args_m)
 args_pancls,logger_pancls = get_config(args_p)
+
 # 加载训练好的图像分割模型args_pancls
 modelPancls = Custom_Model_2D(args_pancls)  # 定义了一个合适的模型类
-modelPancls.load_state_dict( torch.load("/home/dmt218/zby/PANCLS/workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5/best_model.pth"), strict=False)  # 替换成你的模型路径
+load_model = torch.load("/home/dmt218/zby/PANCLS/workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5/best_model.pth")
+# print(modelPancls)
+modelPancls.load_state_dict(load_model , strict=True)  # 替换成你的模型路径
 modelPancls=modelPancls.cuda()
 modelPancls.eval()
-# modelCellseg =NestedUNet2(args)
-# modelCellseg.load_state_dict( torch.load("/home/dmt218/zby/MTCSNet/workspace/All/All_All_unetpp50rvdc_cls2_1head_ep200_b8_crp512_full_cn/best_model.pth"),strict=True)
-# modelCellseg=modelCellseg.cuda()
-# modelCellseg.eval()
 
-# pancls_dataset= CellSeg(args,logger)
-# pancls_dataloader = DataLoader(pancls_dataset)
-
+modelCellseg =NestedUNet2(args)
+modelCellseg.load_state_dict( torch.load("/home/dmt218/zby/MTCSNet/workspace/All/All_All_unetpp50rvdc_cls2_1head_ep200_b8_crp512_full_cn/best_model.pth"),strict=True)
+modelCellseg=modelCellseg.cuda()
+modelCellseg.eval()
 
 
 # 图像预处理函数
@@ -80,8 +80,6 @@ def preprocess_pancls_image(image):
 def segment_mtcs_image(model,dloader):
     for ii, item in enumerate(dloader):
         imgs, annos, img_meta = item
-        print(img_meta)
-        print(imgs)
         preds_list = []
         preds_vor_list = []
         certs_list = []
@@ -145,24 +143,26 @@ def segment_mtcs_image(model,dloader):
         
 def segment_pancls_image(model,ploader,test_fusion='mean'):
     # for ii, item in enumerate(dloader):
+    pred_invade_dict, pred_surgery_dict, pred_essential_dict = {}, {}, {}
+    score_invade_dict, score_surgery_dict, score_essential_dict = {}, {}, {}
+    label_invade_dict, label_surgery_dict, label_essential_dict = {}, {}, {}
+    feat_dict = {}       
     for ii,input_batch in enumerate(ploader):
-        pred_invade_dict, pred_surgery_dict, pred_essential_dict = {}, {}, {}
-        score_invade_dict, score_surgery_dict, score_essential_dict = {}, {}, {}
-        label_invade_dict, label_surgery_dict, label_essential_dict = {}, {}, {}
-        feat_dict = {}        
-        anno_items=input_batch['anno_item']
-        img_names= input_batch['img_name']
+        
+        img,img_meta = input_batch
+        anno_items=img_meta['anno_item']
+        img_names= img_meta['img_name']
         with torch.no_grad():
-            # img = img.cuda()
-            # anno_items = img_meta['anno_item']
-            # img_names = img_meta['img_name']
-            # input_batch = {
-            # 'img': img.unsqueeze(),
-            # "blood": img_meta['blood'].cuda(),
-            # 'others': img_meta['others'].cuda(),
-            # "blood_des": clip.tokenize(img_meta['blood_des'], context_length=256).cuda(),
-            # "others_des": clip.tokenize(img_meta['others_des']).cuda(),
-            #     }
+            img = img.cuda()
+            anno_items = img_meta['anno_item']
+            img_names = img_meta['img_name']
+            input_batch = {
+                'img': img,
+                "blood": img_meta['blood'].cuda(),
+                'others': img_meta['others'].cuda(),
+                "blood_des": clip.tokenize(img_meta['blood_des'], context_length=256).cuda(),
+                "others_des": clip.tokenize(img_meta['others_des']).cuda(),
+                }
             output = model(input_batch)
             preds_invade = output['preds_invade']
             preds_surgery = output['preds_surgery']
@@ -170,57 +170,46 @@ def segment_pancls_image(model,ploader,test_fusion='mean'):
             preds_seg = output['pred_seg']
             feat = output['feat'].detach().cpu().numpy()
             # Fusion
-            if test_fusion =='mean':
-                pred_invade = torch.mean(torch.stack(preds_invade, dim=0), dim=0)
-                pred_surgery = torch.mean(torch.stack(preds_surgery, dim=0), dim=0)
-                pred_essential = torch.mean(torch.stack(preds_essential, dim=0), dim=0)
-            if test_fusion == 'max':
-                pred_invade,_ = torch.max(torch.stack(preds_invade, dim=0), dim=0)
-                pred_surgery,_ = torch.max(torch.stack(preds_surgery, dim=0), dim=0)
-                pred_essential,_ = torch.max(torch.stack(preds_essential, dim=0), dim=0)
-                
-            pred_invade = torch.softmax(pred_invade.detach().cpu(), dim=1)
-            pred_surgery = torch.softmax(pred_surgery.detach().cpu(), dim=1)
-            pred_essential = torch.softmax(pred_essential.detach().cpu(), dim=1)
+        if test_fusion =='mean':
+            pred_invade = torch.mean(torch.stack(preds_invade, dim=0), dim=0)
+            pred_surgery = torch.mean(torch.stack(preds_surgery, dim=0), dim=0)
+            pred_essential = torch.mean(torch.stack(preds_essential, dim=0), dim=0)
+        if test_fusion == 'max':
+            pred_invade,_ = torch.max(torch.stack(preds_invade, dim=0), dim=0)
+            pred_surgery,_ = torch.max(torch.stack(preds_surgery, dim=0), dim=0)
+            pred_essential,_ = torch.max(torch.stack(preds_essential, dim=0), dim=0)
             
-            pred_invade_cls = torch.argmax(pred_invade,dim=1).numpy()
-            pred_surgery_cls = torch.argmax(pred_surgery, dim=1).numpy()
-            pred_essential_cls = torch.argmax(pred_essential, dim=1).numpy()
-            
-            for b in range(pred_invade.shape[0]):
-                anno_item = anno_items[b]
-                if anno_item not in list(pred_invade_dict.keys()):
-                    pred_invade_dict[anno_item], pred_surgery_dict[anno_item], pred_essential_dict[anno_item] = {}, {}, {}
-                    score_invade_dict[anno_item], score_surgery_dict[anno_item], score_essential_dict[anno_item] = {}, {}, {}
-                    label_invade_dict[anno_item], label_surgery_dict[anno_item], label_essential_dict[anno_item] = {}, {}, {}
-                    feat_dict[anno_item] = {}
-                pred_invade_dict[anno_item][img_names[b]]= pred_invade_cls[b]
-                pred_surgery_dict[anno_item][img_names[b]] = pred_surgery_cls[b]
-                pred_essential_dict[anno_item][img_names[b]] = pred_essential_cls[b]
-                score_invade_dict[anno_item][img_names[b]] = pred_invade[b][1].item()
-                score_surgery_dict[anno_item][img_names[b]] = pred_surgery[b][1].item()
-                score_essential_dict[anno_item][img_names[b]] = pred_essential[b][1].item()
-                # label_invade_dict[anno_item][img_names[b]] = img_meta['label_invade'][b].item()
-                # label_surgery_dict[anno_item][img_names[b]] = img_meta['label_surgery'][b].item()
-                # label_essential_dict[anno_item][img_names[b]] = img_meta['label_essential'][b].item()
-                feat_dict[anno_item][img_names[b]] = feat[b]
-        preds, scores = vote_w_esse_infer(args_pancls, pred_invade_dict, pred_surgery_dict, pred_essential_dict, 
-                                        score_invade_dict, score_surgery_dict, score_essential_dict,
-                                        mode=args.score_mode if "score_mode" in args else "max" )
-        return preds,scores
-        save_dict = {
-        'pred_invade_dict':pred_invade_dict,  #
-        'pred_surgery_dict': pred_surgery_dict, #
-        "pred_essential_dict": pred_essential_dict,
-        'score_invade_dict': score_invade_dict,
-        "score_surgery_dict": score_surgery_dict,
-        'score_essential_dict': score_essential_dict,
-        # 'label_invade_dict': label_invade_dict,
-        # 'label_surgery_dict': label_surgery_dict,
-        # 'label_essential_dict': label_essential_dict,
-        'feat_dict': feat_dict
-    }
-        return save_dict
+        pred_invade = torch.softmax(pred_invade.detach().cpu(), dim=1)
+        pred_surgery = torch.softmax(pred_surgery.detach().cpu(), dim=1)
+        pred_essential = torch.softmax(pred_essential.detach().cpu(), dim=1)
+        # print(pred_invade,pred_surgery)
+        print(pred_essential)
+        pred_invade_cls = torch.argmax(pred_invade,dim=1).numpy()
+        pred_surgery_cls = torch.argmax(pred_surgery, dim=1).numpy()
+        pred_essential_cls = torch.argmax(pred_essential, dim=1).numpy()
+        
+        for b in range(pred_invade.shape[0]):
+            anno_item = anno_items[b]
+            if anno_item not in list(pred_invade_dict.keys()):
+                pred_invade_dict[anno_item], pred_surgery_dict[anno_item], pred_essential_dict[anno_item] = {}, {}, {}
+                score_invade_dict[anno_item], score_surgery_dict[anno_item], score_essential_dict[anno_item] = {}, {}, {}
+                label_invade_dict[anno_item], label_surgery_dict[anno_item], label_essential_dict[anno_item] = {}, {}, {}
+                feat_dict[anno_item] = {}
+            pred_invade_dict[anno_item][img_names[b]]= pred_invade_cls[b]
+            pred_surgery_dict[anno_item][img_names[b]] = pred_surgery_cls[b]
+            pred_essential_dict[anno_item][img_names[b]] = pred_essential_cls[b]
+            score_invade_dict[anno_item][img_names[b]] = pred_invade[b][1].item()
+            score_surgery_dict[anno_item][img_names[b]] = pred_surgery[b][1].item()
+            score_essential_dict[anno_item][img_names[b]] = pred_essential[b][1].item()
+            # label_invade_dict[anno_item][img_names[b]] = img_meta['label_invade'][b].item()
+            # label_surgery_dict[anno_item][img_names[b]] = img_meta['label_surgery'][b].item()
+            # label_essential_dict[anno_item][img_names[b]] = img_meta['label_essential'][b].item()
+            feat_dict[anno_item][img_names[b]] = feat[b]
+    preds, scores = vote_w_esse_infer(args_pancls, pred_invade_dict, pred_surgery_dict, pred_essential_dict, 
+                score_invade_dict, score_surgery_dict, score_essential_dict,
+                mode=args.score_mode if "score_mode" in args else "max" )
+    return preds,scores
+     
 
 # API端点，接收POST请求
 @app.route('/segment', methods=['POST'])
@@ -240,8 +229,6 @@ def segment():
     mtcs_dataset = WSCellSeg(args)
     mtcs_dataloader= DataLoader(mtcs_dataset,batch_size= 1,num_workers=1)
     segmentation=segment_mtcs_image(model=modelCellseg,dloader=mtcs_dataloader)
-    # print(segmentation.shape)
-    # print(type(segmentation))
     import cv2
     # Image.fromarray(segmentation).save('fuck.png')
     image = cv2.cvtColor(segmentation,cv2.COLOR_BGR2RGB)
@@ -250,11 +237,7 @@ def segment():
     # 将分割结果nparray图像转为Base64编码
     result_image = cv2.imencode('.jpg',image)[1].tostring()
     result_image_base64=base64.b64encode(result_image).decode('utf-8')
-    # result_image = Image.fromarray(segmentation.astype('uint8'))
-    # buffered = io.BytesIO()
-    # result_image.save(buffered, format="PNG")
-    # result_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
-    # print(result_image)
+
     return jsonify({"segmentation_image": result_image_base64})
         
     # except Exception as e:
@@ -282,19 +265,16 @@ def pancls():
         file.save(os.path.join(path,file.filename))  # 将文件保存到指定目录
     csv_file.save(csv_path)  # 保存CSV文件
     # 进行图像分割
+
     imgs, img_meta = read_item(args_pancls,dcm_path,csv_file)
     panD = PanDataset(imgs,img_meta)
     ploader = DataLoader(panD,batch_size = 64,
-                         shuffle=False,collate_fn=collate_fn)
+                         shuffle=False,)
     
-    pred, score = segment_pancls_image(modelPancls,ploader,test_fusion="mean")
+    pred, score = segment_pancls_image(modelPancls,ploader,test_fusion="max")
     res = format_result(imgs,pred,score)
-    # 将分割结果图像转为Base64编码
-    # result_image = Image.fromarray(segmentation.astype('uint8'))
-    # buffered = io.BytesIO()
-    # result_image.save(buffered, format="PNG")
-    # result_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
-    # print(segmentation)
+
+    # print(res)
     return jsonify(res)
     # except Exception as e:
     #     print(e)

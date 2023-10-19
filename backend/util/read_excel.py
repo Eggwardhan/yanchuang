@@ -173,9 +173,13 @@ def read_item(args, dcm_dir, excel_path):
     # Read dcm
     dcm_paths = sorted(glob.glob(os.path.join(dcm_dir,'*.dcm'),recursive=False))
     dcm_list = []
-    for dcm_path in dcm_paths:
+    for idx,dcm_path in enumerate(dcm_paths):
         dcm_file = pydicom.dcmread(dcm_path)
         dcm = dcm_file.pixel_array
+        if idx>0 and idx<len(dcm_paths)-1:
+            dcm = np.stack((pydicom.dcmread(dcm_paths[idx-1]).pixel_array,dcm,pydicom.dcmread(dcm_paths[idx+1]).pixel_array),axis=-1)
+        else:
+            dcm = np.stack((dcm,dcm,dcm),axis=-1)
         rescale_intercept = float(dcm_file.RescaleIntercept)
         rescale_slope = float(dcm_file.RescaleSlope)
         dcm = dcm*rescale_slope+rescale_intercept
@@ -184,6 +188,7 @@ def read_item(args, dcm_dir, excel_path):
         high_window = Win_center + (Win_width/2)
         dcm = np.clip(dcm, low_window, high_window).astype(np.float32)
         dcm = (dcm-low_window)/(high_window-low_window)*255
+        dcm = dcm.astype(np.uint8)
         dcm_list.append(dcm)
 
     # Read Excels
@@ -194,9 +199,9 @@ def read_item(args, dcm_dir, excel_path):
     img_meta_list = []
     for i in range(1, len(dcm_list)-1):
         # Generate Image in Batch
-        img = np.stack((dcm_list[i-1], dcm_list[i], dcm_list[i+1]),axis=-1)
+        # img = np.stack((dcm_list[i-1], dcm_list[i], dcm_list[i+1]),axis=-1)
         # Resize
-        img = cv2.resize(img, args.rescale, interpolation=cv2.INTER_LINEAR)
+        img = cv2.resize(dcm_list[i], args.rescale, interpolation=cv2.INTER_LINEAR)
         H,W,C = img.shape
         # Center Crop
         h_start = round((H-args.crop_size[1])/2)
@@ -226,7 +231,7 @@ def read_dcm_files(args, dcm_dir):
     dcm_list = []
     img_list = []
     img_name_list = []
-    for dcm_path in dcm_paths:
+    for idx,dcm_path in enumerate(dcm_paths):
         dcm_file = pydicom.dcmread(dcm_path)
         dcm = dcm_file.pixel_array
         rescale_intercept = float(dcm_file.RescaleIntercept)

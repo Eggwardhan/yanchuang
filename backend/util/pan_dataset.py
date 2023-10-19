@@ -11,7 +11,19 @@ class PanDataset(Dataset):
         return len(self.list1)
     
     def __getitem__(self, index):
-        return  self.list1[index] , self.list2[index]
+        return self.list1[index] , self.list2[index]
+        img_meta=self.list2[index]
+        
+        return  {
+            'img': self.list1[index],
+            "blood": img_meta['blood'],
+            'others': img_meta['others'],
+            "blood_des": clip.tokenize(img_meta['blood_des'], context_length=256),
+            "others_des": clip.tokenize(img_meta['others_des']),
+            "anno_item":img_meta['anno_item'],
+            "img_name":img_meta['img_name']
+            
+                }
     
 
 def collate_fn(batch):

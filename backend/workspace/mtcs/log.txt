@@ -6022,3 +6022,3811 @@ val_interval: 100
 vote_mode: pred_essential
 window_crop: False
 workspace: ./workspace/pancls/
+2023-10-19 17:17:45,316 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 17:17:45,325 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: final.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: transformer
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/pancls/
+2023-10-19 17:56:29,410 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 17:56:29,423 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: final.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: transformer
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/pancls/
+2023-10-19 18:37:58,496 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 18:37:58,514 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: final.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: transformer
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/pancls/
+2023-10-19 18:40:59,861 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 18:40:59,872 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: final.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: transformer
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/pancls/
+2023-10-19 18:42:50,470 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 18:42:50,481 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: final.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: transformer
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/pancls/
+2023-10-19 18:44:36,684 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 18:44:36,693 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: final.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: transformer
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/pancls/
+2023-10-19 18:46:16,899 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 18:46:16,923 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: final.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: transformer
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/pancls/
+2023-10-19 18:52:12,430 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 18:52:12,444 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: final.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: transformer
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/pancls/
+2023-10-19 18:54:36,869 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 18:54:36,880 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: final.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: transformer
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/pancls/
+2023-10-19 18:56:16,533 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 18:56:16,543 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: final.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: transformer
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/pancls/
+2023-10-19 19:01:38,475 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:01:38,483 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: final.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: transformer
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/pancls/
+2023-10-19 19:08:00,832 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:08:00,841 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:10:27,553 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:10:27,561 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:14:46,738 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:14:46,746 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:16:08,381 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:16:08,390 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:18:04,488 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:18:04,498 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:20:22,225 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:20:22,238 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:22:31,122 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:22:31,140 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:26:05,534 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:26:05,542 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:33:40,011 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:33:40,025 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:35:52,555 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:35:52,563 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:42:21,198 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:42:21,206 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:44:04,263 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:44:04,271 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:45:34,543 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:45:34,558 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:47:18,670 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:47:18,679 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 19:48:39,724 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 19:48:39,733 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 20:00:33,927 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 20:00:33,935 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 20:31:37,611 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 20:31:37,625 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 20:55:55,665 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 20:55:55,679 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 20:57:59,045 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 20:57:59,059 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 21:02:48,339 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 21:02:48,348 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
+2023-10-19 21:08:22,972 - MTCSNet.utils.logger - INFO - batch_size: 8
+beta: 1.0
+checkpoint: final.pth
+count_scale: 100
+crop_size: [512, 512]
+cutmix: False
+cutmix_prob: 0.5
+data_root: ./data
+data_type: CellSeg
+degree_neighbour: 1
+degree_version: v10
+distance_scale: 1
+infer_min_area: 16
+infer_seed: 0.8
+infer_stride: [256, 256]
+infer_threshold: 0.5
+net_N: 10
+net_backbone: resnet50
+net_celoss: True
+net_certainty: True
+net_consistency: True
+net_convtranspose: False
+net_count: False
+net_degree: True
+net_diceloss: True
+net_focalloss: False
+net_learning_rate: 0.001
+net_name: unetpp
+net_nheads: 1
+net_num_classes: 2
+net_num_epoches: 200
+net_reg_weight: 1
+net_regression: True
+net_resume: False
+net_vorloss: True
+num_worker: 4
+pesudo_rate: 0
+rand_bright: 0
+rand_contrast: 0
+rand_flip: 0.5
+rand_hue: 0
+rand_rotate: True
+rand_saturation: 0
+results_test: results_test
+results_val: results_val
+save_interval: 50
+scale_range: [1.0, 3.0]
+split_info: ./data/splits/train_all_val_all.json
+test_anno_dir: ./data/
+test_degree: 0
+test_fusion: mean
+test_image_dir: ./data/
+test_mode: val
+test_multi_scale: [1.0]
+train_mode: train_full
+val_interval: 5
+workspace: ./workspace/mtcs/
+2023-10-19 21:08:22,985 - MTCSNet.utils.logger - INFO - D_center_ratio: 0.5
+D_center_window: 64
+D_offset_ratio: 0.1
+batch_size: 16
+checkpoint: best_epoch.pth
+cls_anno_path: ./data/pancreas/anno_all.json
+crop_size: [512, 512]
+crop_window: [512, 512]
+data_mode: img
+data_root: ./data
+data_type: Pancreas_2d
+dcm_win_center: 40
+dcm_win_width: 350
+drop_last: True
+main_metric: test_avg
+neighbour_slice: True
+net_backbone: resnet50
+net_blood_name: mlp
+net_classifier_inchannel: 640
+net_cls_use_essential: True
+net_dropout: 0.5
+net_essential_classes: 2
+net_essential_cls_celoss: True
+net_invade_classes: 2
+net_invade_cls_celoss: True
+net_learning_rate: 0.001
+net_name: resnet
+net_nheads: 1
+net_num_iter: 3000
+net_others_name: transformer
+net_pretrain: 
+net_resume: 
+net_seg_celoss: False
+net_seg_classes: 3
+net_seg_use_essential: True
+net_surgery_classes: 2
+net_surgery_cls_celoss: True
+net_text_pretrain: CLIP_ViT-B/32
+num_worker: 8
+rand_blood_text: False
+rand_others_text: False
+rand_rotate: 
+rand_scale: 
+rescale: [560, 560]
+results_test: results_test
+results_val: results_val
+save_interval: 1000
+score_mode: max
+split_info: ./data/splits/train_val_test_2d_v1.json
+stage_thres: 0.95
+test_anno_path: 
+test_checkpoint: best_model.pth
+test_dcm_dir: ./data/pancreas/dcms_3d
+test_fusion: mean
+test_image_dir: ./data/pancreas/images_3d
+test_mode: val
+train_mode: train
+two_stage: False
+val_interval: 100
+vote_mode: pred_essential
+window_crop: False
+workspace: ./workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5
