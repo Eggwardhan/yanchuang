@@ -54,7 +54,16 @@ function uploadFiles() {
     xhr.open('POST', '/your-upload-endpoint', true); // 替换为您的服务器端上传端点的URL
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            document.getElementById('response').innerHTML = xhr.responseText;
+            data = xhr.response
+            const dcmElement = document.getElementById('dcm');
+            const text1Element = document.getElementById('text1');
+            const text2Element = document.getElementById('text2');
+            const text3Element = document.getElementById('text3');
+            dcmElement.src = 'data:image/jpeg;base64,'+data.image;
+            text1Element.textContent="score invade:"+data.score_invade
+            text2Element.textContent="score_surgery:"+data.score_surgery
+            text3Element.textContent="score_essential:"+data.score_essential
+            
         }
     };
 
