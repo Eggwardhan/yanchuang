@@ -15,6 +15,9 @@ batch_size: 16
 num_worker: 8
 drop_last: True
 
+# Dicom setting
+dcm_win_center: 40
+dcm_win_width: 350
 # Augmentation
 rescale: [560,560]
 rand_rotate: ""

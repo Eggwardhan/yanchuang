@@ -9,55 +9,61 @@ from PIL import Image
 from flask import Flask, request, jsonify
 import sys
 import yaml
+import cv2
 from shutil import copyfile
 import argparse
 import numpy as np
 from flask_cors import CORS
 from uuid import uuid4
 from util.WSCellSeg import WSCellSeg
+from util.pan_dataset import PanDataset,collate_fn
 from skimage.color import label2rgb
-# sys.path.append("/home/dmt218/zby/PANCLS")
+from util.read_excel import read_item
+from PANCLS.utils.eval_2d import vote_w_esse_infer,format_result
+from util.unetplusplus import NestedUNet as NestedUNet2
+# sys.path.append("/home/dmt218/zby/")
 # from datasets.cellseg import CellSeg
-# from utils.logger import Logger
-# from models.custom_model_2d import Custom_Model_2D
-# from utils.slide_infer import slide_inference
-# import models.text_encoder.clip as clip
-sys.path.insert(0,"/home/dmt218/zby/MTCSNet")
+from PANCLS.utils.logger import Logger
+from PANCLS.models.custom_model_2d import Custom_Model_2D
+import PANCLS.models.text_encoder.clip as clip
+# sys.path.insert(0,"/home/dmt218/zby/")
 from yacs.config import CfgNode
-from utils.logger import Logger
-from models.unetplusplus import NestedUNet as NestedUNet2
-from utils.slide_infer import slide_inference as slide_inference_mtcs
-from postprocess.postprocess import mc_distance_postprocessing, mc_distance_postprocessing_count
+from MTCSNet.utils.logger import Logger
+from MTCSNet.utils.slide_infer import slide_inference as slide_inference_mtcs
+from MTCSNet.postprocess.postprocess import mc_distance_postprocessing, mc_distance_postprocessing_count
 
 app=Flask(__name__)
 CORS(app)
 
-args="/home/dmt218/hsh/yanchuang/backend/util/eval_pancls.yaml"
-args = "/home/dmt218/hsh/yanchuang/backend/util/eval_mtcs.yaml"
+args_p="/home/dmt218/hsh/yanchuang/backend/util/eval_pancls.yaml"
+args_m = "/home/dmt218/hsh/yanchuang/backend/util/eval_mtcs.yaml"
 
 path_mtcs="/home/dmt218/hsh/yanchuang/backend/workspace/2D_final"
 
+path_pancls="/home/dmt218/hsh/yanchuang/backend/workspace/pancls"
 def get_config(path ):
     cfg = yaml.load(open(path,'r'), Loader=yaml.FullLoader)
     cfg = CfgNode(cfg)
     os.makedirs(cfg.workspace,exist_ok=True)
     os.makedirs(os.path.join(cfg.workspace, cfg.results_val), exist_ok=True)
     os.makedirs(os.path.join(cfg.workspace, cfg.results_test), exist_ok=True)
-    if "train_pass" in args and args.train_pass == True:
-        copyfile(args.config, os.path.join(cfg.workspace, os.path.basename(args.config)))
+    # if "train_pass" in args and args.train_pass == True:
+    #     copyfile(args.config, os.path.join(cfg.workspace, os.path.basename(args.config)))
     logger =Logger(cfg)
     logger.info(cfg)
     return cfg,logger
 
-args , logger = get_config(args)
-# 加载训练好的图像分割模型
-# modelPancls = NestedUNet(args)  # 定义了一个合适的模型类
-# modelPancls = torch.load("/home/dmt218/zby/PANCLS/workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5/best_model.pth")  # 替换成你的模型路径
-# modelPancls.eval()
-modelCellseg =NestedUNet2(args)
-modelCellseg.load_state_dict( torch.load("/home/dmt218/zby/MTCSNet/workspace/All/All_All_unetpp50rvdc_cls2_1head_ep200_b8_crp512_full_cn/best_model.pth"),strict=True)
-modelCellseg=modelCellseg.cuda()
-modelCellseg.eval()
+args, logger = get_config(args_m)
+args_pancls,logger_pancls = get_config(args_p)
+# 加载训练好的图像分割模型args_pancls
+modelPancls = Custom_Model_2D(args_pancls)  # 定义了一个合适的模型类
+modelPancls.load_state_dict( torch.load("/home/dmt218/zby/PANCLS/workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5/best_model.pth"), strict=False)  # 替换成你的模型路径
+modelPancls=modelPancls.cuda()
+modelPancls.eval()
+# modelCellseg =NestedUNet2(args)
+# modelCellseg.load_state_dict( torch.load("/home/dmt218/zby/MTCSNet/workspace/All/All_All_unetpp50rvdc_cls2_1head_ep200_b8_crp512_full_cn/best_model.pth"),strict=True)
+# modelCellseg=modelCellseg.cuda()
+# modelCellseg.eval()
 
 # pancls_dataset= CellSeg(args,logger)
 # pancls_dataloader = DataLoader(pancls_dataset)
@@ -137,26 +143,26 @@ def segment_mtcs_image(model,dloader):
 
     return vis.astype('uint8')
         
-def segment_pancls_image(model,dloader,test_fusion='mean'):
-    for ii, item in enumerate(dloader):
+def segment_pancls_image(model,ploader,test_fusion='mean'):
+    # for ii, item in enumerate(dloader):
+    for ii,input_batch in enumerate(ploader):
         pred_invade_dict, pred_surgery_dict, pred_essential_dict = {}, {}, {}
         score_invade_dict, score_surgery_dict, score_essential_dict = {}, {}, {}
         label_invade_dict, label_surgery_dict, label_essential_dict = {}, {}, {}
         feat_dict = {}        
+        anno_items=input_batch['anno_item']
+        img_names= input_batch['img_name']
         with torch.no_grad():
-            img, label, img_meta = item
-            img = img.cuda()
-            anno_items = img_meta['anno_item']
-            img_names = img_meta['img_name']
-            input_batch = {
-            'img': img,
-            "blood": img_meta['blood'].cuda(),
-            'others': img_meta['others'].cuda(),
-            "blood_des": clip.tokenize(img_meta['blood_des'], context_length=256).cuda(),
-            "blood_des_1": clip.tokenize(img_meta['blood_des_1']).cuda(),
-            "blood_des_2": clip.tokenize(img_meta['blood_des_2']).cuda(),
-            "others_des": clip.tokenize(img_meta['others_des']).cuda(),
-        }
+            # img = img.cuda()
+            # anno_items = img_meta['anno_item']
+            # img_names = img_meta['img_name']
+            # input_batch = {
+            # 'img': img.unsqueeze(),
+            # "blood": img_meta['blood'].cuda(),
+            # 'others': img_meta['others'].cuda(),
+            # "blood_des": clip.tokenize(img_meta['blood_des'], context_length=256).cuda(),
+            # "others_des": clip.tokenize(img_meta['others_des']).cuda(),
+            #     }
             output = model(input_batch)
             preds_invade = output['preds_invade']
             preds_surgery = output['preds_surgery']
@@ -194,20 +200,24 @@ def segment_pancls_image(model,dloader,test_fusion='mean'):
                 score_invade_dict[anno_item][img_names[b]] = pred_invade[b][1].item()
                 score_surgery_dict[anno_item][img_names[b]] = pred_surgery[b][1].item()
                 score_essential_dict[anno_item][img_names[b]] = pred_essential[b][1].item()
-                label_invade_dict[anno_item][img_names[b]] = img_meta['label_invade'][b].item()
-                label_surgery_dict[anno_item][img_names[b]] = img_meta['label_surgery'][b].item()
-                label_essential_dict[anno_item][img_names[b]] = img_meta['label_essential'][b].item()
+                # label_invade_dict[anno_item][img_names[b]] = img_meta['label_invade'][b].item()
+                # label_surgery_dict[anno_item][img_names[b]] = img_meta['label_surgery'][b].item()
+                # label_essential_dict[anno_item][img_names[b]] = img_meta['label_essential'][b].item()
                 feat_dict[anno_item][img_names[b]] = feat[b]
+        preds, scores = vote_w_esse_infer(args_pancls, pred_invade_dict, pred_surgery_dict, pred_essential_dict, 
+                                        score_invade_dict, score_surgery_dict, score_essential_dict,
+                                        mode=args.score_mode if "score_mode" in args else "max" )
+        return preds,scores
         save_dict = {
-        'pred_invade_dict':pred_invade_dict,
-        'pred_surgery_dict': pred_surgery_dict,
+        'pred_invade_dict':pred_invade_dict,  #
+        'pred_surgery_dict': pred_surgery_dict, #
         "pred_essential_dict": pred_essential_dict,
         'score_invade_dict': score_invade_dict,
         "score_surgery_dict": score_surgery_dict,
         'score_essential_dict': score_essential_dict,
-        'label_invade_dict': label_invade_dict,
-        'label_surgery_dict': label_surgery_dict,
-        'label_essential_dict': label_essential_dict,
+        # 'label_invade_dict': label_invade_dict,
+        # 'label_surgery_dict': label_surgery_dict,
+        # 'label_essential_dict': label_essential_dict,
         'feat_dict': feat_dict
     }
         return save_dict
@@ -230,8 +240,8 @@ def segment():
     mtcs_dataset = WSCellSeg(args)
     mtcs_dataloader= DataLoader(mtcs_dataset,batch_size= 1,num_workers=1)
     segmentation=segment_mtcs_image(model=modelCellseg,dloader=mtcs_dataloader)
-    print(segmentation.shape)
-    print(type(segmentation))
+    # print(segmentation.shape)
+    # print(type(segmentation))
     import cv2
     # Image.fromarray(segmentation).save('fuck.png')
     image = cv2.cvtColor(segmentation,cv2.COLOR_BGR2RGB)
@@ -253,34 +263,42 @@ def segment():
     
 @app.route('/pancls',methods=['POST'])
 def pancls():
-    try:
-        if 'folder' not in request.files or 'csv' not in request.files:
-            return 'No files provided', 400
-        # 获取上传的文件
-        folder_files = request.files.getlist('folder')
-        csv_file = request.files['csv']
-        
-        # 保存上传的文件
-        path=str(uuid4())
-        path = os.path.join(path_mtcs,path)
-        os.mkdir(path)
-        
-        for file in folder_files:
-            file.save(os.path.join(path,file.filename))  # 将文件保存到指定目录
-        csv_file.save(os.path.join(path,csv_file.filename))  # 保存CSV文件
-        # 进行图像分割
-        segmentation = segment_pancls_image(modelPancls,image_tensor,test_fusion="mean")
-
-        # 将分割结果图像转为Base64编码
-        # result_image = Image.fromarray(segmentation.astype('uint8'))
-        # buffered = io.BytesIO()
-        # result_image.save(buffered, format="PNG")
-        # result_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
-
-        return jsonify(segmentation)
-    except Exception as e:
-        print(e)
-        return jsonify({"error": str(e)}), 500
+    # try:
+    if 'folder' not in request.files or 'csv' not in request.files:
+        return 'No files provided', 400
+    # 获取上传的文件
+    folder_files = request.files.getlist('folder')
+    csv_file = request.files['csv']
+    
+    # 保存上传的文件
+    path=str(uuid4())
+    path = os.path.join(path_pancls,path)
+    os.makedirs(path)
+    dcm_path = ""
+    csv_path = os.path.join(path,csv_file.filename)
+    for file in folder_files:
+        dcm_path = os.path.join(path,file.filename.rsplit("/")[0])
+        os.makedirs(dcm_path,exist_ok=True)
+        file.save(os.path.join(path,file.filename))  # 将文件保存到指定目录
+    csv_file.save(csv_path)  # 保存CSV文件
+    # 进行图像分割
+    imgs, img_meta = read_item(args_pancls,dcm_path,csv_file)
+    panD = PanDataset(imgs,img_meta)
+    ploader = DataLoader(panD,batch_size = 64,
+                         shuffle=False,collate_fn=collate_fn)
+    
+    pred, score = segment_pancls_image(modelPancls,ploader,test_fusion="mean")
+    res = format_result(imgs,pred,score)
+    # 将分割结果图像转为Base64编码
+    # result_image = Image.fromarray(segmentation.astype('uint8'))
+    # buffered = io.BytesIO()
+    # result_image.save(buffered, format="PNG")
+    # result_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
+    # print(segmentation)
+    return jsonify(res)
+    # except Exception as e:
+    #     print(e)
+    #     return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000,debug=False)
