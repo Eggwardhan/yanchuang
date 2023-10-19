@@ -51,7 +51,7 @@ function uploadFiles() {
     formData.append('csv', csvInput.files[0]);
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/your-upload-endpoint', true); // 替换为您的服务器端上传端点的URL
+    xhr.open('POST', 'http://10.112.188.232:5000/pancls', true); // 替换为您的服务器端上传端点的URL
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             document.getElementById('response').innerHTML = xhr.responseText;
