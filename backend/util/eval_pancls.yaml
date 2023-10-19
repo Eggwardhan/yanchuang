@@ -1,3 +1,6 @@
+# Dicom setting
+dcm_win_center: 40
+dcm_win_width: 350
 # Dataset
 data_type: "Pancreas_2d"
 data_mode: 'img'
@@ -15,9 +18,6 @@ batch_size: 16
 num_worker: 8
 drop_last: True
 
-# Dicom setting
-dcm_win_center: 40
-dcm_win_width: 350
 # Augmentation
 rescale: [560,560]
 rand_rotate: ""
@@ -41,7 +41,7 @@ net_name: 'resnet'
 net_backbone: 'resnet50'
 net_pretrain: ''
 # Text Encoder
-net_blood_name: "transformer"
+net_blood_name: "mlp"
 net_others_name: "transformer"
 net_text_pretrain: 'CLIP_ViT-B/32' # 'CLIP_ViT-L/14'
 # Classifiers
@@ -75,10 +75,10 @@ vote_mode: 'pred_essential'
 score_mode: 'max'
 
 # Saving
-workspace: './workspace/pancls/'
+workspace: './workspace/2D_final/res50_mlp_trans_iter3000_img_b16_rz560_crp512_ecs_d0.5'
 results_val: 'results_val'
 results_test: 'results_test'
-checkpoint: final.pth
+checkpoint: best_epoch.pth
 val_interval: 100
 save_interval: 1000
 
