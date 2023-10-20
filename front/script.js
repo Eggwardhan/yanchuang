@@ -6,25 +6,35 @@
 
 // }
 function showUploadImg(input){
-    var file = input.files[0];
-    var url = window.URL.createObjectURL(file)
-    document.getElemtById('upload').src=url
+    console.log("fuck");
+    if (input.files && input.files[0]){
+      let reader = new FileReader();
+      reader.onload=function(e){
+        // uploadedImage.src=reader.result;
+        document.getElementById('uploadImagepage1').src=e.target.result;
+        document.getElementById('uploadImagepage1').style.display="inline";
+    
+    }
+
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 function uploadImage(pageId) {
     const fileInput = document.getElementById(`fileInput${pageId}`);
     const uploadedImage = document.getElementById(`uploadedImagepage1`);
     const elementImage = document.getElementById('returnImagepage1')
     const file = fileInput.files[0];
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    console.log(reader.result);
-    var url = window.URL.createObjectURL(file);
-    console.log(url);
-    reader.onload=function(){
-        uploadedImage.src=reader.result;
-        uploadedImage.src = url;
-    }
     if (file) {
+        // var reader = new FileReader();
+        // reader.readAsDataURL(file);
+        // var arrayBuffer = new ArrayBuffer(100);
+        // var uint8Array = new Uint8Array(arrayBuffer);
+        // for (var i = 0; i < 100; i++) {
+        //     uint8Array[i] = i;
+        // }
+        
+        
+    
         const formData = new FormData();
         formData.append('image', file);
         // 如果页面2需要上传其他数据，也可以在此处添加到formData中
@@ -40,7 +50,7 @@ function uploadImage(pageId) {
         .then((data) => {
             // 显示上传的图像
             if(data &&data.segmentation_image){
-                uploadedImage
+                document.getElementById('returnImagepage1').style.display="inline";
                 elementImage.src='data:image/jpeg;base64,'+data.segmentation_image;
             }
         })
@@ -68,15 +78,28 @@ function uploadFiles() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             data = JSON.parse(xhr.response);
             console.log(xhr);
-            const dcmElement = document.getElementById('dcm');
+            const dcmElement1 = document.getElementById('dcm1');
+            const dcmElement2 = document.getElementById('dcm2');
+            const dcmElement3 = document.getElementById('dcm3');
+            const dcm1 = document.getElementById('score1');
+            const dcm2 = document.getElementById('score2');
+            const dcm3 = document.getElementById('score3');
+            
             const text1Element = document.getElementById('text1');
             const text2Element = document.getElementById('text2');
-            const text3Element = document.getElementById('text3');
-            dcmElement.src = 'data:image/jpeg;base64,'+data.image;
-            text1Element.textContent="score invade:"+data.score_invade
-            text2Element.textContent="score_surgery:"+data.score_surgery
-            text3Element.textContent="score_essential:"+data.score_essential
+            const diag = document.getElementById("diagnosis");
+
+            dcmElement1.src = 'data:image/jpeg;base64,'+data.image[0];
+            dcmElement2.src = 'data:image/jpeg;base64,'+data.image[1];
+            dcmElement3.src = 'data:image/jpeg;base64,'+data.image[2];
+
+            text1Element.textContent="score_invade:"+data.score_invade;
+            text2Element.textContent="score_surgery:"+data.score_surgery;
+            dcm1.textContent="score_essential:"+data.score_essential[0];
+            dcm2.textContent="score_essential:"+data.score_essential[1];
+            dcm3.textContent="score_essential:"+data.score_essential[2];
             
+            diag.textContent="诊断结果:" + data.diag;
         }
     };
 
