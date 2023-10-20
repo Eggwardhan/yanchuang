@@ -194,6 +194,19 @@ button:hover {
     background-color: #333;
 }
 
+.loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 
 
@@ -256,6 +269,10 @@ button:hover {
                 <button type="button" onclick="uploadFiles()">上传</button>
             </form>
             <div class="image-container">
+                <div id="loadingIndicator" style="display: none;">
+                    <div class="loader"></div>  <!-- 您可以使用CSS动画来制作加载动画 -->
+                    <p>请求正在处理中，请稍候...</p>
+                </div>
                 <div class="dcm-container">
                     <img id="dcm1" alt="dcm">
                     <p id="score1"></p>
@@ -283,6 +300,8 @@ button:hover {
             </div>
         </div>
     </div>
+    <script src="https://seikichi.github.io/tiff.js/bower_components/tiff.min.js"></script>
+
     <script src="script.js"></script>
 </body>
 
