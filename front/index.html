@@ -116,7 +116,17 @@ body {
     border: 1px solid #000;
 } */
 
-button {
+.head_button {
+    right: 10px;
+    bottom: 10px;
+    padding: 5px 15px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.upbutton {
     position: absolute;
     right: 10px;
     bottom: 10px;
@@ -133,10 +143,13 @@ button:hover {
 }
 
 .text-container {
+    display:none;
     display: flex;
     justify-content: space-between;
 }
-
+.dcm-container{
+    display: none;
+}
 .text-column {
     flex: 1;
     margin: 10px;
@@ -179,7 +192,7 @@ input[type="file"] {
     padding: 5px;
 }
 
-button {
+.upbutton {
     padding: 8px 15px;
     background-color: #505A6C;
     color: white;
@@ -192,6 +205,11 @@ button {
 
 button:hover {
     background-color: #333;
+}
+button:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .loader {
@@ -226,9 +244,9 @@ button:hover {
             </div>
         </div>
         <div class="nav-buttons">
-            <button>首页</button>
-            <button>功能列表</button>
-            <button>联系我们</button>
+            <button class="head_button">首页</button>
+            <button class="head_button">功能列表</button>
+            <button class="head_button">联系我们</button>
         </div>
     </div>
 
@@ -254,7 +272,7 @@ button:hover {
             <div class="image-container">
                 <img class ="uploaded-img" id="uploadImagepage1" src="#" alt="图a">
                 <img class="returned-img" id="returnImagepage1" src="#" alt="图b">
-                <button onclick="uploadImage('page1')">转换</button>
+                <button class= "upbutton" onclick="uploadImage('page1')">转换</button>
             </div>
         </div>
 
@@ -264,9 +282,9 @@ button:hover {
             <form id="uploadForm" enctype="multipart/form-data">
                 <label for="folder">上传文件夹:</label>
                 <input type="file" id="folder" webkitdirectory directory multiple><br>
-                <label for="csv">上传CSV文件:</label>
+                <label for="csv">上传Excel文件:</label>
                 <input type="file" id="csv"><br>
-                <button type="button" onclick="uploadFiles()">上传</button>
+                <button class= "upbutton" type="button" onclick="uploadFiles()">上传</button>
             </form>
             <div class="image-container">
                 <div id="loadingIndicator" style="display: none;">
@@ -274,27 +292,28 @@ button:hover {
                     <p>请求正在处理中，请稍候...</p>
                 </div>
                 <div class="dcm-container">
-                    <img id="dcm1" alt="dcm">
+                    <img id="dcm1" alt="">
                     <p id="score1"></p>
                     
                 </div>
                 <div class="dcm-container">
-                    <img id="dcm2" alt="dcm">
+                    <img id="dcm2" alt="">
                     <p id="score2"></p>
                 </div>
                 <div class="dcm-container">
-                    <img id="dcm3" alt="dcm">
+                    <img id="dcm3" alt="">
                     <p id="score3"></p>
                 </div>
             </div>
             <div class="text-container">
                 <div class="text-column">
-                    <p id="text1">Score invade:</p>
-                    <p id="text2">Score surgey</p>
-                </div>
-                <div class="diagnosis">
+                    <p id="text1"></p>
+                    <p id="text2"></p>
                     <p id = "diagnosis"></p>
+
                 </div>
+                <!-- <div class="diagnosis">
+                </div> -->
                 
                 <!-- <button onclick="uploadImage('page2')">转换</button> -->
             </div>

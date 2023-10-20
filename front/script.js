@@ -5,6 +5,7 @@
 //     content.classList.toggle('active');
 
 // }
+window.onload = function() {
 function showUploadImg(input){
     console.log("fuck");
     if (input.files && input.files[0]){
@@ -65,6 +66,25 @@ function uploadFiles() {
     var formData = new FormData();
     var folderInput = document.getElementById('folder');
     var csvInput = document.getElementById('csv');
+    const dcmElement1 = document.getElementById('dcm1');
+    const dcmElement2 = document.getElementById('dcm2');
+    const dcmElement3 = document.getElementById('dcm3');
+    const dcm1 = document.getElementById('score1');
+    const dcm2 = document.getElementById('score2');
+    const dcm3 = document.getElementById('score3');
+    
+    const text1Element = document.getElementById('text1');
+    const text2Element = document.getElementById('text2');
+    const diag = document.getElementById("diagnosis");
+    dcmElement1.style.display="none";
+    dcmElement2.style.display="none";
+    dcmElement3.style.display="none";
+    text1Element.style.display="none";
+    text2Element.style.display="none";
+    dcm1.style.display="none";
+    dcm2.style.display="none";
+    dcm3.style.display="none";
+    diag.style.display="none";
 
     for (var i = 0; i < folderInput.files.length; i++) {
         formData.append('folder', folderInput.files[i]);
@@ -82,17 +102,8 @@ function uploadFiles() {
 
                 data = JSON.parse(xhr.response);
                 console.log(xhr);
-                const dcmElement1 = document.getElementById('dcm1');
-                const dcmElement2 = document.getElementById('dcm2');
-                const dcmElement3 = document.getElementById('dcm3');
-                const dcm1 = document.getElementById('score1');
-                const dcm2 = document.getElementById('score2');
-                const dcm3 = document.getElementById('score3');
                 
-                const text1Element = document.getElementById('text1');
-                const text2Element = document.getElementById('text2');
-                const diag = document.getElementById("diagnosis");
-
+                
                 dcmElement1.src = 'data:image/jpeg;base64,'+data.image[0];
                 dcmElement2.src = 'data:image/jpeg;base64,'+data.image[1];
                 dcmElement3.src = 'data:image/jpeg;base64,'+data.image[2];
@@ -104,6 +115,17 @@ function uploadFiles() {
                 dcm3.textContent="score_essential:"+data.score_essential[2];
                 
                 diag.textContent="诊断结果:" + data.diag;
+
+                dcmElement1.style.display="inline";
+                dcmElement2.style.display="inline";
+                dcmElement3.style.display="inline";
+                text1Element.style.display="inline";
+                text2Element.style.display="inline";
+                dcm1.style.display="inline";
+                dcm2.style.display="inline";
+                dcm3.style.display="inline";
+                diag.style.display="inline";
+
             }
 
         }
@@ -124,3 +146,4 @@ function showPage(pageNumber){
         }
     })
 }
+};
